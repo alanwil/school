@@ -1,0 +1,14 @@
+Jestes wlascicielem swojej wlasnej szkoly prywatnej.
+
+Do Twojej szkoly uczeszczaja najlepsi uczniowie w miescie gdzie srednia ich ocena jest powyzej 4,3 (w systemie 1 - 6).
+
+Napisz program pozwalajacy wykonywac konkretne rzeczy w szkole:
+- W programie powinna byc opcja stworzenia nowej klasy, skladajacej sie z dowolnej ilosci osob
+- W programie powinna byc opcja dodawania przedmiotow powiazanych z uczniem
+- Powinna byc opcja dodawania ocen konkretnemu uczniowi, do konkretnego przedmiotu (podczas dodawania oceny powinien
+powstac nowy parametr "srednia dla przedmiotu", ktory bedzie modyfikowany podczas dodawania oraz poprawiania ocen)
+- Powinna byc opcja poprawiania ocen konkretnemu uczniowi (MAKSYMALNIE RAZ)
+- Powinna byc opcja zakonczenia roku szkolnego, w ktorym sprawdzi sie obecny poziom sredniej kazdego ucznia z kazdej klasy.
+Jezeli jest on ponizej 4,3 powinien on wyleciec ze szkoly
+- Dodatkowo opcja zakonczenia roku szkolnego powinna byc mozliwa tylko wtedy kiedy wszyscy uczniowie poprawia ocene 1 na
+wyzsza. Jezeli natomiast nie uda im sie poprawic powinien taki uczen byc automatycznie kasowany z bazy
