@@ -4,148 +4,84 @@ import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
 public class Subject {
-    private String subjectName;
-    private List<Double> marks;
+    private SubjectName subjectName;
+    private List<Mark> marks;
     private double average;
-    private boolean markAdjusted;
-    private boolean stillHasLowMark;
+    private boolean allMarksAdjusted = false;
     private final int MARKS_GENERATOR_LIMIT = 10;
 
-    public Subject(String subjectName) {
+    public Subject(SubjectName subjectName) {
         this.subjectName = subjectName;
-        markAdjusted = false;
-        stillHasLowMark = false;
         marks = new ArrayList<>();
         average = 0;
     }
 
-    public Subject(String subjectName, double ... marks) {
+    public Subject(SubjectName subjectName, List<Mark> marks) {
         this.subjectName = subjectName;
-        markAdjusted = false;
-        stillHasLowMark = false;
-        this.marks = inputMarksList(marks);
-        average = 0;
-    }
-
-    public Subject(String subjectName, List<Double> marks) {
-        this.subjectName = subjectName;
-        markAdjusted = false;
-        stillHasLowMark = false;
         this.marks = marks;
-        average = 0;
-    }
-
-    public Subject() {
-        this.subjectName = "Generated";
-        markAdjusted = false;
-        stillHasLowMark = false;
-        generateRandomMarks();
-    }
-
-    public void addMark(double mark){
-        marks.add(mark);
         calcAverage();
     }
 
-    public void generateRandomMarks(){
+    public Subject() {
+        this.subjectName = SubjectName.DEFAULT;
+        generateRandomMarks();
+    }
+
+    private void generateRandomMarks() {
         marks = DoubleStream
                 .generate(() -> Math.random() * 5 + 1)
                 .limit(MARKS_GENERATOR_LIMIT)
                 .map(mark -> Math.round(mark * 10d)/10d)
                 .boxed()
+                .map(Mark::new)
                 .collect(Collectors.toList());
         calcAverage();
     }
 
-    public void generateGoodMarks(){
-        marks = DoubleStream
-                .generate(() -> Math.random() * 2 + 4)
-                .limit(MARKS_GENERATOR_LIMIT)
-                .map(mark -> Math.round(mark * 10d)/10d)
-                .boxed()
-                .collect(Collectors.toList());
+    public void addMark(double mark){
+        marks.add(new Mark(mark));
         calcAverage();
-    }
-
-    public void generatePoorMarks(){
-        marks = DoubleStream
-                .generate(() -> Math.random() * 3 + 1)
-                .limit(MARKS_GENERATOR_LIMIT)
-                .map(mark -> Math.round(mark * 10d)/10d)
-                .boxed()
-                .collect(Collectors.toList());
-        calcAverage();
-    }
-
-    public void inputMarks(double ... marks){
-        this.marks = DoubleStream
-                .of(marks).boxed()
-                .collect(Collectors.toList());
-        calcAverage();
-    }
-
-    public List<Double> inputMarksList(double ... marks){
-        this.marks = DoubleStream
-                .of(marks)
-                .boxed()
-                .collect(Collectors.toList());
-        return this.marks;
     }
 
     public void calcAverage(){
         average = Math.round(marks
                 .stream()
+                .map(Mark::getMark)
                 .reduce(0.0, Double::sum) / marks.size() * 10d)/10d;
     }
 
     public void adjustMark(double markToAdjust, double newMark){
-        if (!markAdjusted){
-            if (marks.contains(markToAdjust)){
-                int markIndex = marks.indexOf(markToAdjust);
-                marks.set(markIndex, newMark);
-                markAdjusted = true;
-            } else {
-                System.out.println("No such mark found");
+        if (marks.size() > 0){
+            for (int i = 0; i < marks.size(); i++) {
+                if (marks.get(i).getMark() == markToAdjust && !marks.get(i).isAdjusted()){
+                    marks.set(i, new Mark(newMark, true));
+                    areAllMarksAdjusted();
+                    break;
+                }
             }
         } else {
-            System.out.println("Mark already adjusted");
+            System.out.println("No such mark found");
         }
     }
 
-    public void adjustMark(double newMark){
-        if (!markAdjusted && marks.size() > 0){
-            double lowestMark = marks.stream().mapToDouble(Double::doubleValue).min().getAsDouble();
-            marks.set(marks.indexOf(lowestMark), newMark);
-            markAdjusted = true;
-        } else {
-            System.out.println("Mark already adjusted");
-        }
+    public void areAllMarksAdjusted(){
+        allMarksAdjusted = marks.stream().anyMatch(Mark::isAdjusted);
     }
 
-    public boolean isStillHasLowMark() {
-        if (markAdjusted){
-            stillHasLowMark = marks.stream().anyMatch(mark -> mark < 2.0);
-            if (stillHasLowMark){
-                return true;
-            }
-        }
-        return false;
+    public boolean isAllMarksAdjusted() {
+        return allMarksAdjusted;
     }
 
-    public String getSubjectName() {
+    public SubjectName getSubjectName() {
         return subjectName;
     }
 
-    public List<Double> getMarks() {
+    public List<Mark> getMarks() {
         return marks;
     }
 
     public double getAverage() {
         return average;
-    }
-
-    public boolean isMarkAdjusted() {
-        return markAdjusted;
     }
 
     @Override
