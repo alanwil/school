@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Klass {
+public class Classs {
     private String classNumberAndProfile;
     private List<Student> students;
 
-    public Klass(String classNumberAndProfile) {
+    public Classs(String classNumberAndProfile) {
         this.classNumberAndProfile = classNumberAndProfile;
         students = new ArrayList<>();
     }
@@ -15,7 +15,8 @@ public class Klass {
         students.add(student);
     }
 
-    public void removeStudent(){
+    public void removeStudents(){
+        students.forEach(Student::checkLowMarks);
         students = students.stream().filter(Student::isTooStupid).collect(Collectors.toList());
     }
 

@@ -8,18 +8,12 @@ public class Subject {
     private List<Mark> marks;
     private double average;
     private boolean allMarksAdjusted = false;
-    private final int MARKS_GENERATOR_LIMIT = 10;
+    private final int MARKS_GENERATOR_LIMIT = 4;
 
     public Subject(SubjectName subjectName) {
         this.subjectName = subjectName;
         marks = new ArrayList<>();
         average = 0;
-    }
-
-    public Subject(SubjectName subjectName, List<Mark> marks) {
-        this.subjectName = subjectName;
-        this.marks = marks;
-        calcAverage();
     }
 
     public Subject() {
@@ -39,7 +33,9 @@ public class Subject {
     }
 
     public void addMark(double mark){
-        marks.add(new Mark(mark));
+        if (mark >= 1 && mark <= 6){
+            marks.add(new Mark(mark));
+        }
         calcAverage();
     }
 
@@ -53,9 +49,13 @@ public class Subject {
     public void adjustMark(double markToAdjust, double newMark){
         if (marks.size() > 0){
             for (int i = 0; i < marks.size(); i++) {
-                if (marks.get(i).getMark() == markToAdjust && !marks.get(i).isAdjusted()){
+                if (marks.get(i).getMark() == markToAdjust
+                        && !marks.get(i).isAdjusted()
+                        && newMark >= 1.0
+                        && newMark <= 6.0){
                     marks.set(i, new Mark(newMark, true));
                     areAllMarksAdjusted();
+                    calcAverage();
                     break;
                 }
             }
@@ -64,11 +64,12 @@ public class Subject {
         }
     }
 
-    public void areAllMarksAdjusted(){
-        allMarksAdjusted = marks.stream().anyMatch(Mark::isAdjusted);
+    private void areAllMarksAdjusted(){
+        allMarksAdjusted = marks.stream().allMatch(Mark::isAdjusted);
     }
 
     public boolean isAllMarksAdjusted() {
+        areAllMarksAdjusted();
         return allMarksAdjusted;
     }
 
@@ -86,8 +87,8 @@ public class Subject {
 
     @Override
     public String toString() {
-        return subjectName +
-                ", marks=" + marks +
-                ", average=" + average;
+        return subjectName.getName() +
+                ", marks = " + marks +
+                ", average = " + average;
     }
 }

@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="734c5b71-cf4f-4e97-adc4-7bd4c58ba87b" name="Default Changelist" comment="changed mark from double to Mark objects">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Mark.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SubjectName.java" afterDir="false" />
+    <list default="true" id="734c5b71-cf4f-4e97-adc4-7bd4c58ba87b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Klass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Classs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Mark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Mark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/School.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/School.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SubjectName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SubjectName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Klass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Klass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/School.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/School.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Subject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Subject.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +92,14 @@
       <option name="presentableId" value="Default" />
       <updated>1583848078788</updated>
     </task>
+    <task id="LOCAL-00001" summary="changed mark from double to Mark objects">
+      <created>1584209616335</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584209616335</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

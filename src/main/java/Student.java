@@ -27,7 +27,11 @@ public class Student {
     }
 
     public void calcGlobalAverage() {
-        globalAverage = subjects.stream().mapToDouble(Subject::getAverage).average().getAsDouble();
+        globalAverage = subjects
+                .stream()
+                .mapToDouble(Subject::getAverage)
+                .average()
+                .orElse(0);
     }
 
     public double getGlobalAverage() {
@@ -38,18 +42,32 @@ public class Student {
         return tooStupid;
     }
 
-    public void improveMarks(SubjectName subjectName, double mark){
-
+    public void improveMark(SubjectName subjectName, double oldMark, double newMark){
+        for (Subject subject: subjects) {
+            if (subject.getSubjectName() == subjectName){
+                subject.adjustMark(oldMark, newMark);
+                break;
+            }
+        }
         checkLowMarks();
     }
 
     public void checkLowMarks(){
-        boolean lessThanTwoMark = subjects.stream().flatMap(subject -> subject.getMarks().stream().map(mark -> mark.getMark()).anyMatch(mark -> mark < 2.0));
-        boolean allMarksAdjusted = subjects.stream().anyMatch(Subject::isAllMarksAdjusted);
+        boolean lessThanTwoMark = subjects
+                .stream()
+                .flatMap(subject -> subject.getMarks().stream())
+                .map(Mark::getMark)
+                .anyMatch(mark -> mark < 2.0);
+        boolean allMarksAdjusted = subjects.stream().allMatch(Subject::isAllMarksAdjusted);
         calcGlobalAverage();
         boolean tooLowAverage = getGlobalAverage() < School.REQUIRED_AVERAGE;
         if (lessThanTwoMark && tooLowAverage && allMarksAdjusted){
             tooStupid = true;
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

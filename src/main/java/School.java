@@ -2,22 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class School {
-    private List<Klass> classes;
+    private List<Classs> classes;
     public static final double REQUIRED_AVERAGE = 4.3;
 
     public School(){
         classes = new ArrayList<>();
     }
 
-    public void addClass(Klass klass){
-        classes.add(klass);
+    public void addClass(Classs classs){
+        classes.add(classs);
     }
 
-    public List<Klass> getClasses() {
+    public List<Classs> getClasses() {
         return classes;
     }
 
     public void endOfYear(){
-        classes.forEach(Klass::removeStudent);
+        classes.forEach(Classs::removeStudents);
     }
 }

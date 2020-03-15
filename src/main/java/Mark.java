@@ -3,7 +3,12 @@ public class Mark {
     private boolean adjusted = false;
 
     public Mark(double mark) {
-        this.mark = mark;
+        if (mark >= 5.0){
+            this.mark = mark;
+            adjusted = true;
+        } else {
+            this.mark = mark;
+        }
     }
 
     public Mark(double mark, boolean adjusted) {
@@ -25,6 +30,6 @@ public class Mark {
 
     @Override
     public String toString() {
-        return String.valueOf(mark);
+        return String.valueOf(mark) + " " + isAdjusted();
     }
 }
