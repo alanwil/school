@@ -37,8 +37,7 @@ public class Main {
         darek.improveMark(SubjectName.PHYSICS, 3.5, 4.0);
         darek.improveMark(SubjectName.PHYSICS, 3.0, 3.0);
         janek.improveMark(SubjectName.MATH, 4.0, 4.5);
-        System.out.println(firstMatFiz.getStudents());
-        school.endOfYear();
+        firstMatFiz.removeStudents();
         System.out.println(firstMatFiz.getStudents());
 
     }

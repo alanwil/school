@@ -68,7 +68,7 @@ public class Student {
         boolean allMarksAdjusted = subjects.stream().allMatch(Subject::isAllMarksAdjusted);
         calcGlobalAverage();
         boolean tooLowAverage = getGlobalAverage() < School.REQUIRED_AVERAGE;
-        if (lessThanTwoMark && tooLowAverage && allMarksAdjusted){
+        if ((lessThanTwoMark || tooLowAverage) && allMarksAdjusted){
             notSmartEnough = true;
         }
     }
