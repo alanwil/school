@@ -5,12 +5,12 @@ public class Student {
     private String name;
     private List<Subject> subjects;
     private double globalAverage;
-    private boolean tooStupid;
+    private boolean notSmartEnough;
 
     public Student(String name) {
         this.name = name;
         subjects = new ArrayList<>();
-        tooStupid = false;
+        notSmartEnough = false;
         globalAverage = 0;
     }
 
@@ -38,8 +38,8 @@ public class Student {
         return globalAverage;
     }
 
-    public boolean isTooStupid() {
-        return tooStupid;
+    public boolean isNotSmartEnough() {
+        return notSmartEnough;
     }
 
     public void improveMark(SubjectName subjectName, double oldMark, double newMark){
@@ -49,7 +49,14 @@ public class Student {
                 break;
             }
         }
+        calcGlobalAverage();
         checkLowMarks();
+    }
+
+    public boolean canEndYear(){
+        return subjects
+                .stream()
+                .allMatch(Subject::isAllMarksAdjusted);
     }
 
     public void checkLowMarks(){
@@ -62,12 +69,12 @@ public class Student {
         calcGlobalAverage();
         boolean tooLowAverage = getGlobalAverage() < School.REQUIRED_AVERAGE;
         if (lessThanTwoMark && tooLowAverage && allMarksAdjusted){
-            tooStupid = true;
+            notSmartEnough = true;
         }
     }
 
     @Override
     public String toString() {
-        return this.getName();
+        return this.getName() + this.getSubjects();
     }
 }

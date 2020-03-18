@@ -17,7 +17,10 @@ public class Classs {
 
     public void removeStudents(){
         students.forEach(Student::checkLowMarks);
-        students = students.stream().filter(Student::isTooStupid).collect(Collectors.toList());
+        students = students
+                .stream()
+                .filter(student -> !student.isNotSmartEnough())
+                .collect(Collectors.toList());
     }
 
     public String getClassNumberAndProfile() {

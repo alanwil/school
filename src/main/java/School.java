@@ -18,6 +18,14 @@ public class School {
     }
 
     public void endOfYear(){
-        classes.forEach(Classs::removeStudents);
+        boolean endOfYearAllowed = classes.stream()
+                .flatMap(classs -> classs.getStudents().stream())
+                .allMatch(Student::canEndYear);
+        if (endOfYearAllowed){
+            classes.forEach(Classs::removeStudents);
+            System.out.println("End of Year completed");
+        } else {
+            System.out.println("Not all marks adjusted");
+        }
     }
 }

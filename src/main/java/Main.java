@@ -10,31 +10,36 @@ public class Main {
         school.addClass(thirdHum);
 
         Student janek = new Student("Janek");
-        Student julka = new Student("Julka");
+        Student darek = new Student("Darek");
 
         firstMatFiz.addStudent(janek);
-        firstMatFiz.addStudent(julka);
+        firstMatFiz.addStudent(darek);
 
         Subject math = new Subject(SubjectName.MATH);
+        Subject physics = new Subject(SubjectName.PHYSICS);
 
         janek.addSubject(math);
-        julka.addSubject(new Subject());
+        darek.addSubject(physics);
 
         math.addMark(5.0);
         math.addMark(4.0);
         math.addMark(3.5);
         math.addMark(6.1);
+        physics.addMark(2.0);
+        physics.addMark(3.5);
+        physics.addMark(5.0);
+        physics.addMark(3.0);
 
-        System.out.println(math);
         janek.improveMark(SubjectName.MATH, 3.5, 5.0);
+        System.out.println(firstMatFiz.getStudents());
+        school.endOfYear();
+        darek.improveMark(SubjectName.PHYSICS, 2.0, 3.0);
+        darek.improveMark(SubjectName.PHYSICS, 3.5, 4.0);
+        darek.improveMark(SubjectName.PHYSICS, 3.0, 3.0);
         janek.improveMark(SubjectName.MATH, 4.0, 4.5);
-        
-        System.out.println(math);
-        System.out.println(math.isAllMarksAdjusted());
-        System.out.println(janek.isTooStupid());
-
         System.out.println(firstMatFiz.getStudents());
         school.endOfYear();
         System.out.println(firstMatFiz.getStudents());
+
     }
 }
